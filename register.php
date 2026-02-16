@@ -13,14 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($username) || empty($email) || empty($password)) {
         $errors[] = "All fields are required.";
     }
-    if (strlen($username) < 3) {
-        $errors[] = "Username must be at least 3 characters long.";
+    if (strlen($username) < MIN_USERNAME_LENGTH) {
+    $errors[] = "Username must be at least " . MIN_USERNAME_LENGTH . " characters long.";
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format.";
     }
-    if (strlen($password) < 8) {
-        $errors[] = "Password must be at least 8 characters long.";
+    if (strlen($password) < MIN_PASSWORD_LENGTH) {
+    $errors[] = "Password must be at least " . MIN_PASSWORD_LENGTH . " characters long.";
     }
 
     // Database Logic 
@@ -66,8 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>Create Account</h1>
 
         <?php if (!empty($errors)): ?>
-            <div style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 10px;">
-                <ul>
+            <div class="error-box" style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 15px;">
+                <ul style="margin: 0;">
                     <?php foreach ($errors as $error): ?>
                         <li><?php echo htmlspecialchars($error); ?></li>
                     <?php endforeach; ?>

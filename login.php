@@ -45,10 +45,14 @@
         <h1>Login</h1>
 
         <?php if (!empty($errors)): ?>
-        <div style="color: red;">
-            <?php echo htmlspecialchars($errors[0]); ?>
-        </div>
-    <?php endif; ?>
+            <div class="error-box" style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 15px;">
+                <ul style="margin: 0;">
+                    <?php foreach ($errors as $error): ?>
+                        <li><?php echo htmlspecialchars($error); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
 
         <form method="POST" action="login.php">
             <div class="form-group">

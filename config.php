@@ -1,23 +1,18 @@
 <?php
 
-$host = "localhost";
-$dbname = "php_auth_db";
-$db_user = "root";
-$db_pass = ""; 
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'php_auth_system');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 
-$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
+define('MIN_USERNAME_LENGTH', 3);
+define('MIN_PASSWORD_LENGTH', 8);
 
-try{
-    $pdo = new PDO($dsn, $db_user, $db_pass); 
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-}catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-    die();
+try {
+    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4";
+    $pdo = new PDO($dsn, DB_USER, DB_PASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
 }
-
-
-
-
-
-
-
+?>
